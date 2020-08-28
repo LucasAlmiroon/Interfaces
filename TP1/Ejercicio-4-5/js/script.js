@@ -19,10 +19,7 @@ document.addEventListener ("DOMContentLoaded", function(){
     grd2.addColorStop(0.5,"#FFFF00");
     grd2.addColorStop(1,"#FF0000");
 
-
     ctx2.fillStyle = grd2;
-    ctx2.fillRect(0,0,300,300)
-
-
+    ctx2.fillRect(0,0,300,300);
 
 })
