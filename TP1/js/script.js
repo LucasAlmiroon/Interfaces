@@ -14,6 +14,18 @@ document.addEventListener ("DOMContentLoaded", function(){
         }
     }
 
+    function encontrarMayor (mat){
+        let aux = 0;
+        for (x = 0; x < cols; x++){
+            for(y = 0; y < row; y++){
+                if (mat[x][y] > aux){
+                    aux = mat[x][y];
+                }
+            }
+        }
+        return aux
+    }
+
     function mayorFilaPares(mat){
         let aux = 0;
         for (x = 0; x < cols; x++){
@@ -30,17 +42,6 @@ document.addEventListener ("DOMContentLoaded", function(){
 
     }
     
-    function encontrarMayor (mat){
-        let aux = 0;
-        for (x = 0; x < cols; x++){
-            for(y = 0; y < row; y++){
-                if (mat[x][y] > aux){
-                    aux = mat[x][y];
-                }
-            }
-        }
-        return aux
-    }
 
     function menorFilasImpares(mat){
         let aux
@@ -59,6 +60,19 @@ document.addEventListener ("DOMContentLoaded", function(){
         }
     }
 
+    function promedioFila(mat){
+        let arr = [];
+        let aux;
+        for (x = 0; x < cols; x++){
+            aux = 0;
+            for(y = 0; y < row; y++){
+                aux += mat[x][y];
+            }
+            arr[x] = aux/10;
+        }
+        console.log(arr);
+    }
+
     crearMatriz();
 
     mayor = encontrarMayor(matriz);
@@ -70,5 +84,7 @@ document.addEventListener ("DOMContentLoaded", function(){
     mayorFilaPares(matriz);
 
     menorFilasImpares(matriz);
+
+    promedioFila(matriz);
 
 })
