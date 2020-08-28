@@ -1,8 +1,13 @@
 document.addEventListener ("DOMContentLoaded", function(){
-    let ctx = document.getElementById("canvas").getContext("2d");
+    
+    //Ejercicio 2
+    
+    let ctx = document.querySelector("#canvas").getContext("2d");
     ctx.fillStyle = "#00FFAA";
     ctx.fillRect(0,0,150,100);
     
+    //Ejercicio 3
+
     let imgData = ctx.createImageData(100, 100);
     
     for (let x = 0; x < 100; x++){
@@ -19,8 +24,7 @@ document.addEventListener ("DOMContentLoaded", function(){
         imgData.data[i + 2] = b;
         imgData.data[i + 3] = a;
     }
-    ctx.putImageData(imgData, 800, 0);
     
-
+    ctx.putImageData(imgData, 800, 0);
       
 })

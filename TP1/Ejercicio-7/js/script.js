@@ -1,6 +1,6 @@
 document.addEventListener ("DOMContentLoaded", function(){
 
-    let ctx = document.getElementById("canvas").getContext("2d");
+    let ctx = document.querySelector("#canvas").getContext("2d");
     let image1 = new Image();
     
     image1.src = "./img/paisaje.jpg"
