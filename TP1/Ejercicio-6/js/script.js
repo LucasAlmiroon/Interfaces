@@ -1,23 +1,13 @@
 document.addEventListener ("DOMContentLoaded", function(){
-
     let ctx = document.getElementById("canvas").getContext("2d");
-    let image1 = new Image();
     
-    image1.src = "./img/paisaje.jpg"
-    
-    image1.onload = function(){
-        dibujarImagen(this);
-    }
+    let grd = ctx.createLinearGradient(0,0,0,300);
+    grd.addColorStop(0,"#E2E17B");
+    grd.addColorStop(0.25,"#AAA939");
+    grd.addColorStop(0.5,"#72720F");
+    grd.addColorStop(1,"#3A3A00");
 
-    function dibujarImagen(image){
-        ctx.drawImage(image,0,0,900,600);
-    }
-
-    /*function aplicarFiltro(){
- 
-    }
-
-    let boton = document.getElementById("button");
-    boton.addEventListener("click",aplicarFiltro());*/
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,500,300);
 
 })

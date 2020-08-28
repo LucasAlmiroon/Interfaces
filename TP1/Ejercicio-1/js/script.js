@@ -9,13 +9,13 @@ document.addEventListener ("DOMContentLoaded", function(){
         for (x = 0; x < cols; x++){
             matriz[x] = [];
             for (y = 0; y < row; y++){
-                matriz[x][y] = Math.random()*100;
+                matriz[x][y] = Math.floor(Math.random()*100);
             }
         }
     }
 
     function encontrarMayor (mat){
-        let aux = 0;
+        let aux = mat[0][0];
         for (x = 0; x < cols; x++){
             for(y = 0; y < row; y++){
                 if (mat[x][y] > aux){
@@ -27,10 +27,13 @@ document.addEventListener ("DOMContentLoaded", function(){
     }
 
     function mayorFilaPares(mat){
-        let aux = 0;
+        let aux;
         for (let x = 0; x < cols; x+=2){
             for (let y = 0; y < row; y++){
-                if (mat[x][y] >= aux) {
+                if (y == 0){
+                    aux = mat[x][y];
+                }
+                if (mat[x][y] > aux) {
                     aux = mat[x][y];
                 }
             }
