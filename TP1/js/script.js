@@ -13,6 +13,22 @@ document.addEventListener ("DOMContentLoaded", function(){
             }
         }
     }
+
+    function mayorFilaPares(mat){
+        let aux = 0;
+        for (x = 0; x < cols; x++){
+            if (x % 2 == 0){
+                for (y = 0; y < row; y++){
+                    if (mat[x][y] >= aux) {
+                        aux = mat[x][y];
+                    }
+                }
+                console.log ("Fila: " + x + " - Numero mas alto: " + aux);
+                aux = 0;
+            }
+        }
+
+    }
     
     function encontrarMayor (mat){
         let aux = 0;
@@ -26,6 +42,23 @@ document.addEventListener ("DOMContentLoaded", function(){
         return aux
     }
 
+    function menorFilasImpares(mat){
+        let aux
+        for (x = 1; x < cols; x++){
+            if (x % 2 != 0){
+                for (y = 0; y < row; y++){
+                    if (y == 0){
+                        aux = mat[x][y];
+                    }
+                    if (mat[x][y] < aux) {
+                        aux = mat[x][y];
+                    }
+                }
+                console.log ("Fila: " + x + " - Numero mas bajo: " + aux);
+            }
+        }
+    }
+
     crearMatriz();
 
     mayor = encontrarMayor(matriz);
@@ -33,5 +66,9 @@ document.addEventListener ("DOMContentLoaded", function(){
     console.table(matriz);
 
     console.log(mayor);
+
+    mayorFilaPares(matriz);
+
+    menorFilasImpares(matriz);
 
 })
