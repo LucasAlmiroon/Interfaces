@@ -28,44 +28,39 @@ document.addEventListener ("DOMContentLoaded", function(){
 
     function mayorFilaPares(mat){
         let aux = 0;
-        for (x = 0; x < cols; x++){
-            if (x % 2 == 0){
-                for (y = 0; y < row; y++){
-                    if (mat[x][y] >= aux) {
-                        aux = mat[x][y];
-                    }
+        for (let x = 0; x < cols; x+=2){
+            for (let y = 0; y < row; y++){
+                if (mat[x][y] >= aux) {
+                    aux = mat[x][y];
                 }
-                console.log ("Fila: " + x + " - Numero mas alto: " + aux);
-                aux = 0;
             }
+            console.log ("Fila: " + x + " - Numero mas alto: " + aux);
+            aux = 0;
         }
-
     }
     
 
     function menorFilasImpares(mat){
         let aux
-        for (x = 1; x < cols; x++){
-            if (x % 2 != 0){
-                for (y = 0; y < row; y++){
-                    if (y == 0){
-                        aux = mat[x][y];
-                    }
-                    if (mat[x][y] < aux) {
-                        aux = mat[x][y];
-                    }
+        for (let x = 1; x < cols; x+=2){
+            for (let y = 0; y < row; y++){
+                if (y == 0){
+                    aux = mat[x][y];
                 }
-                console.log ("Fila: " + x + " - Numero mas bajo: " + aux);
+                if (mat[x][y] < aux) {
+                    aux = mat[x][y];
+                }
             }
+            console.log ("Fila: " + x + " - Numero mas bajo: " + aux);
         }
     }
 
     function promedioFila(mat){
         let arr = [];
         let aux;
-        for (x = 0; x < cols; x++){
+        for (let x = 0; x < cols; x++){
             aux = 0;
-            for(y = 0; y < row; y++){
+            for(let y = 0; y < row; y++){
                 aux += mat[x][y];
             }
             arr[x] = aux/10;
