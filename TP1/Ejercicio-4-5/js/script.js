@@ -45,18 +45,21 @@ document.addEventListener ("DOMContentLoaded", function(){
     }
     
     function setPixel2(imgData2,x,y,a){
-        let coeficiente = 255 / imgData2.width;
         
         i = (x + y * imgData2.width)*4;
         if (x <= imgData2.width/2){
-            imgData2.data[i] = coeficiente * x;
-            imgData2.data[i + 1] = coeficiente * x;
+            let coef= -1*(x-(imgData2.width/2)) / (imgData2.width/2);
+            let color = 255*(1-coef);
+            imgData2.data[i] = color;
+            imgData2.data[i + 1] = color;
             imgData2.data[i + 2] = 0;
             imgData2.data[i + 3] = a;
             
         }else {
-            imgData2.data[i] = coeficiente * x;
-            imgData2.data[i + 1] = 255 - (coeficiente * x);
+            let coef=(x-(imgData2.width/2)) / (imgData2.width/2);
+            let color=255*(1-coef);
+            imgData2.data[i] = 255;
+            imgData2.data[i + 1] = color;
             imgData2.data[i + 2] = 0;
             imgData2.data[i + 3] = a;
         }
