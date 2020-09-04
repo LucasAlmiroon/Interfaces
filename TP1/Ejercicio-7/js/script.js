@@ -22,15 +22,13 @@ document.addEventListener ("DOMContentLoaded", function(){
                 let imageScaledHeight = canvas.width * imageAspectRatio;
         
                 ctx.drawImage(image,0,0,imageScaledWidth,imageScaledHeight);
-                
-                let imageData = ctx.getImageData(0,0,imageScaledWidth,imageScaledHeight);
-                let boton = document.querySelector("#filtro");
-                boton.addEventListener("click",aplicarFiltroGris(imageData));
+            
             }
         }
     }
     
-    function aplicarFiltroGris(imageData){
+    function aplicarFiltroGris(){
+        let imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
         let w = imageData.width;
         let h = imageData.height;
         for (let x = 0; x < w; x++){
@@ -63,4 +61,6 @@ document.addEventListener ("DOMContentLoaded", function(){
         return  imageData.data[index + 2];
     }       
 
+    let button = document.querySelector("button");
+    button.addEventListener("click",aplicarFiltroGris);
 });
