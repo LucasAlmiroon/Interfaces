@@ -10,26 +10,18 @@ document.addEventListener ("DOMContentLoaded", function(){
     }
     
     function setPixel(imgData,x,y,a){
-        let coef= (x-(imgData.width/2)) / (imgData.width/2);
-        let color = 255*(1-coef);        
-        i = (x + y * imgData.width)*4;
-        imgData.data[i] = color;
-        imgData.data[i + 1] = color;
-        imgData.data[i + 2] = color;
-        imgData.data[i + 3] = a;
-        
-
-    /*    if (x <= imgData.width/4){
-            let coef= -1*(x-(imgData.width/2)) / (imgData.width/2);
-            let color = 255*(1-coef);
+        let i = (x*imgData.width*y)*4;
+        if (x <= imgData.width/4){
+            let coef= (x-(imgData.width/2)) / (imgData.width/2);
+            let color = 63*(1-coef);
             imgData.data[i] = 255;
             imgData.data[i + 1] = color;
             imgData.data[i + 2] = color;
             imgData.data[i + 3] = a;
             
         }else if ((x > imgData.width/4) && (x <= imgData.width/3)) {
-            let coef= -1*(x-(imgData.width/2)) / (imgData.width/2);
-            let color = 255*(1-coef);
+            let coef= (x-(imgData.width/2)) / (imgData.width/2);
+            let color = 63*(1-coef);
             imgData.data[i] = 255;
             imgData.data[i + 1] = color;
             imgData.data[i + 2] = 255;
@@ -37,7 +29,7 @@ document.addEventListener ("DOMContentLoaded", function(){
         
         }else if (x > imgData.width/3 && x <= imgData.width/2){
             let coef= (x-(imgData.width/2)) / (imgData.width/2);
-            let color = 255*(1-coef);
+            let color = 63*(1-coef);
             imgData.data[i] = color;
             imgData.data[i + 1] = 255;
             imgData.data[i + 2] = color;
@@ -45,13 +37,13 @@ document.addEventListener ("DOMContentLoaded", function(){
         
         }else if (x > imgData.width/2 && x <= imgData.width){
             let coef= (x-(imgData.width/2)) / (imgData.width/2);
-            let color = 255*(1-coef);
+            let color = 63*(1-coef);
             
             imgData.data[i] = color;
             imgData.data[i + 1] = 255;
             imgData.data[i + 2] = color;
             imgData.data[i + 3] = a;
-        }*/
+        }
         ctx.putImageData(imgData, 0, 0);   
     }
 
