@@ -27,7 +27,7 @@ document.addEventListener ("DOMContentLoaded", function(){
      let posY = Math.round(Math.random()*ch);
      let color = randomRGBA();
      let rect = new Rectangulo(posX,posY,20,20,color,context);
-     figuras.push(rect);
+     figuras.push(rect);4
  }
 
  function addCirculo(){
