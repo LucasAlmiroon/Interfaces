@@ -1,14 +1,25 @@
-let canvas = document.querySelector("#juego");
-let ctx = canvas.getContext("2d");
+const MAXFICHAS = 21;
 
-function cargarImagen(nombre,empiezax,empiezay){
-    let image = new Image();
+let fichasj1 = [];
+let fichasj2 = [];
 
-    image.src = "./sites/img/" + nombre + ".png";
-    image.id=nombre;
-    
-    image.onload = function(){    
-      ctx.drawImage(image,empiezax,empiezay);
-    }
+function juegoNuevo(){
+  let tablero = new Tablero(200,0);
+  tablero.draw();
+  for(let i = 0; i < MAXFICHAS; i ++){
+      let fichajugador1 = new Ficha("ficha1",Math.random()*100,((Math.random()*400)));
+      let fichajugador2 = new Ficha("ficha2",((Math.random()*100)+800),((Math.random()*400)));
+      fichasj1.push(fichajugador1);
+      fichasj2.push(fichajugador2);
+  }
+  dibujarFichas();
 }
-cargarImagen("tablero",300,100);
+
+function dibujarFichas(){
+  for (let i = 0; i < fichasj2.length; i++){
+    fichasj1[i].draw();
+    fichasj2[i].draw();
+  }
+}
+
+juegoNuevo();
