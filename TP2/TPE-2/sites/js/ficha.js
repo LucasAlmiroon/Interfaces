@@ -1,28 +1,30 @@
-class Ficha extends Juego {
+class Ficha{
 
-    constructor(nombre,posX,posY){
-        super();
-        this.nombre = nombre;
+    constructor(posX,posY,ctx,radius,image){
         this.posX = posX;
         this.posY = posY;
+        this.ctx = ctx;
+        this.radius = radius;
+        this.image = image;
+    }
 
+    setPosition(x,y){
+        this.posX = x;
+        this.posY = y;
     }
 
     draw(){
-    
-        let ctx = document.querySelector("canvas").getContext("2d");
-        let image = new Image();
+        
+        this.ctx.beginPath();
+        this.ctx.arc(this.posX,this.posY,this.radius, 0, 2*Math.PI);
+        this.ctx.fill();
+        this.ctx.drawImage(this.image,this.posX-this.radius,this.posY-this.radius);
+        this.ctx.closePath();
+    }
 
-        let posX = this.posX
-        let posY = this.posY
-
-        image.src = "./sites/img/"+ this.nombre + ".png";
-
-        image.id = this.nombre;
-
-        image.onload = function (){
-            ctx.drawImage(image,posX,posY);
-
-        }
+    isPointInside(x,y){
+        let _x = this.posX - x;
+        let _y = this.posY - y;
+        return Math.sqrt(_x*_x + _y*_y) < this.radius;
     }
 }

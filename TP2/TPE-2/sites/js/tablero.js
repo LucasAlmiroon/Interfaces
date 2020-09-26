@@ -1,27 +1,17 @@
-class Tablero extends Juego{
+class Tablero{
 
-    constructor (posX,posY){
-        super();
+    constructor (posX,posY,ctx,image){
         this.posX = posX;
         this.posY = posY;
+        this.image = image;
+        this.ctx = ctx;
+        this.matriz = matriz;
     }
 
+    
+
+
     draw(){
-        super.draw();
-
-        let ctx = document.querySelector("canvas").getContext("2d");
-        let image = new Image();
-
-        let posX = this.posX
-        let posY = this.posY
-
-        image.src = "./sites/img/tablero.png";
-
-        image.id = "tablero";
-
-        image.onload = function (){
-            ctx.drawImage(image,posX,posY);
-
-        }
+            this.ctx.drawImage(this.image,this.posX,this.posY);
     }
 }
