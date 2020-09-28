@@ -1,6 +1,6 @@
-const MAXFICHAS = 21;
+const MAXFICHAS = 22;
 const COL = 7;
-const FILA = 6;
+const FILAS = 6;
 
 let canvas = document.querySelector("#juego");
 let ctx = canvas.getContext("2d");
@@ -11,13 +11,14 @@ let conFicha = false;
 let matriz = [];
 let cliqueado;
 let turno = false;
+let ganador = 0;
 
 
 
 function crearMatriz(){    
   for (x = 0; x < COL; x++){
     matriz[x] = [];
-    for (y = 0; y < FILA; y++){
+    for (y = 0; y < FILAS; y++){
         matriz[x][y] = 0;
     }
   }
@@ -41,8 +42,8 @@ function juegoNuevo(){
         let fichajugador2 = new Ficha(((Math.random()*100)+850),((Math.random()*400+20)),ctx,32,image);
         fichasj1.push(fichajugador1);
         fichasj2.push(fichajugador2);
-        dibujarFichas();
       }
+      dibujarFichas();
     }
 }
 
@@ -67,7 +68,7 @@ function clickEnFicha(x,y){
     for (let i = 0; i < fichasj1.length; i++){
       const elemento = fichasj1[i];
       console.log(x + " - " + y); 
-      if (elemento.isPointInside(x,y)){
+      if (elemento.isPointInside(x,y) && x < 200){
         
         return elemento;
       }
@@ -76,7 +77,7 @@ function clickEnFicha(x,y){
     for (let i = 0; i < fichasj2.length; i++){
       const elemento = fichasj2[i];
       console.log(x + " - " + y); 
-      if (elemento.isPointInside(x,y)){
+      if (elemento.isPointInside(x,y) && x > 800){
         
         return elemento;
       }
@@ -88,8 +89,7 @@ function clickEnFicha(x,y){
 function onMouseDown(e){
   conFicha = true;
   cliqueado = clickEnFicha(e.layerX,e.layerY);
-  if (cliqueado != null && conFicha) {
-    console.log(cliqueado);
+  if (cliqueado != null && conFicha && ganador == 0) {
     canvas.addEventListener('mousemove', e => {
       if(conFicha){
         dibujado(e.layerX,e.layerY);
@@ -102,71 +102,74 @@ function onMouseDown(e){
 }
 
 function dibujado(x,y){
-  cliqueado.setPosition(x,y);
-  clearCanvas("white");
-  dibujarFichas();
+  if(cliqueado){
+    cliqueado.setPosition(x,y);
+    clearCanvas("white");
+    dibujarFichas();
+  }
 }
 
 function setY(a){
   let j = 0;
-    while(matriz[a][j] == 1 || matriz[a][j] == 2 && j < FILA){
+    while(matriz[a][j] == 1 || matriz[a][j] == 2 && j < FILAS){
         j++;
     }
-    switch (j) {
-      case 0:
-        if (!turno){
-          matriz[a][j] = 1;
-        }else{
-          matriz[a][j] = 2;
-        }
-        return 473;
-        break;
-      case 1:
-        if (!turno){
-          matriz[a][j] = 1;
-        }else{
-          matriz[a][j] = 2;
-        }
-        return 390;
-        break;
-      case 2:
-        if (!turno){
-          matriz[a][j] = 1;
-        }else{
-          matriz[a][j] = 2;
-        }
-        return 305;
-        break;
-      case 3:
-        if (!turno){
-          matriz[a][j] = 1;
-        }else{
-          matriz[a][j] = 2;
-        }
-        return 217;
-        break;
-      case 4:
-        if (!turno){
-          matriz[a][j] = 1;
-        }else{
-          matriz[a][j] = 2;
-        }
-        return 141;
-        break;
-      case 5:
-        if (!turno){
-          matriz[a][j] = 1;
-        }else{
-          matriz[a][j] = 2;
-        }
-        return 55;
-        break;
-      default:
-        return 50;
-        break;
-        
+    if(cliqueado){
+      switch (j) {
+        case 0:
+          if (!turno){
+            matriz[a][j] = 1;
+          }else{
+            matriz[a][j] = 2;
+          }
+          return 473;
+          break;
+        case 1:
+          if (!turno){
+            matriz[a][j] = 1;
+          }else{
+            matriz[a][j] = 2;
+          }
+          return 390;
+          break;
+        case 2:
+          if (!turno){
+            matriz[a][j] = 1;
+          }else{
+            matriz[a][j] = 2;
+          }
+          return 305;
+          break;
+        case 3:
+          if (!turno){
+            matriz[a][j] = 1;
+          }else{
+            matriz[a][j] = 2;
+          }
+          return 217;
+          break;
+        case 4:
+          if (!turno){
+            matriz[a][j] = 1;
+          }else{
+            matriz[a][j] = 2;
+          }
+          return 141;
+          break;
+        case 5:
+          if (!turno){
+            matriz[a][j] = 1;
+          }else{
+            matriz[a][j] = 2;
+          }
+          return 55;
+          break;
+        default:
+          return 50;
+          break;
+          
+      }
     }
-    
 }
 
 function setTurno(){
@@ -179,8 +182,8 @@ function setTurno(){
 
 function onMouseUp(e){
   let x = e.layerX;
-  console.log(cliqueado);
   let y;
+  conFicha = false;
   if (x >= 214 && x <= 283){
      y = setY(0);
     dibujado(248,y);
@@ -216,11 +219,18 @@ function onMouseUp(e){
     dibujarFichas();
     setTurno();
   }else{
-    dibujado(50,50);
-    dibujarFichas();
+    if(!turno){
+      dibujado(50,50);
+      dibujarFichas();
+    }else{
+      dibujado(850,50);
+      dibujarFichas();
+    }
   }
-  conFicha = false;
+  cliqueado = null;
   console.table(matriz);
+  ganador = tablero.verificarTablero();
+  console.log(ganador);
 
 }
 

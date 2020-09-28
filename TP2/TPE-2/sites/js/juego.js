@@ -1,8 +1,0 @@
-class Juego {
-    constructor(){
-    }
-    
-    draw(){
-
-    }
-}
