@@ -1,18 +1,32 @@
 class Tablero{
 
-    constructor (posX,posY,ctx,image){
+    constructor (posX,posY,canvas,ctx,matriz,imageT,imageB){
         this.posX = posX;
         this.posY = posY;
-        this.image = image;
+        this.canvas = canvas;
         this.ctx = ctx;
         this.matriz = matriz;
+        this.imageT = imageT;
+        this.imageB = imageB;
     }
 
     draw(){
-            this.ctx.drawImage(this.image,this.posX,this.posY);
+        this.ctx.drawImage(this.imageT,this.posX,this.posY);
+    }
+
+    drawBack(){
+        this.ctx.drawImage(this.imageB,0,0,canvas.width,canvas.height);
     }
 
     verificarTablero(){
+        let empate = 0;
+        for(let f = 0;f < FILAS; f++){
+            for (let c = 0; c < COL; c++){
+                if(matriz[c][f] == 1 || matriz[c][f] == 2){
+                    empate++;
+                }
+            }
+        }
 	//Buscamos en horizontal
         for (let f = 0; f < FILAS; f++){
             let n1 = 0;
@@ -43,7 +57,8 @@ class Tablero{
             let n2 = 0;
             for (let f = FILAS-1; f >= 0; f--){
                 if (matriz[c][f] == 0){
-                    break;	//Ya no hay mas en la columna.
+                   n1 = 0;
+                   n2 = 0;
                 }
                 else if (matriz[c][f] == 1){
                     n1++;
@@ -112,6 +127,9 @@ class Tablero{
                         return 2;
                 }
             }
+        }
+        if(empate == 42){
+            return 3;
         }
         return 0;
     }

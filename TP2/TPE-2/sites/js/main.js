@@ -26,29 +26,42 @@ function crearMatriz(){
 
 
 function juegoNuevo(){
-  
+  crearMatriz();
+
   let imageTablero = new Image();
   imageTablero.src = "./sites/img/tablero.png";
   imageTablero.onload = function(){
-    tablero = new Tablero(200,10,ctx,imageTablero,matriz);
-    tablero.draw();
+    let imageBackground = new Image();
+    imageBackground.src = "./sites/img/background.png";
+    imageBackground.onload = function(){
+      tablero = new Tablero(200,10,canvas,ctx,matriz,imageTablero,imageBackground);
+      tablero.drawBack();
+      tablero.draw();
+      let image = new Image();
+      image.src = "./sites/img/ficha1.png";
+      image.onload = function(){
+        for(let i = 0; i < MAXFICHAS; i ++){
+          let fichajugador1 = new Ficha(((Math.random()*100)+20),((Math.random()*400+20)),ctx,32,image);
+          fichasj1.push(fichajugador1);
+        }
+        let imageficha2 = new Image();
+        imageficha2.src = "./sites/img/ficha2.png";
+        imageficha2.onload = function(){
+          for(let j = 0; j < MAXFICHAS; j++){
+            let fichajugador2 = new Ficha(((Math.random()*100)+850),((Math.random()*400+20)),ctx,32,imageficha2);
+            fichasj2.push(fichajugador2);
+          }
+          dibujarFichas();
+        }
+      }
+    }
   }
 
-  let image = new Image();
-  image.src = "./sites/img/ficha1.png";
-  image.onload = function(){
-  for(let i = 0; i < MAXFICHAS; i ++){
-        let fichajugador1 = new Ficha(((Math.random()*100)+20),((Math.random()*400+20)),ctx,32,image);
-        let fichajugador2 = new Ficha(((Math.random()*100)+850),((Math.random()*400+20)),ctx,32,image);
-        fichasj1.push(fichajugador1);
-        fichasj2.push(fichajugador2);
-      }
-      dibujarFichas();
-    }
 }
 
 function dibujarFichas(){
   if (tablero){
+    tablero.drawBack();
     tablero.draw();
   }
   for (let i = 0; i < fichasj1.length; i++){
@@ -97,14 +110,14 @@ function onMouseDown(e){
     });
     canvas.addEventListener('mouseup',onMouseUp);
   }else{
-    console.log("No se agarro ficha o es el turno del otro jugador");
+    console.log("No se agarro ficha, es el turno del otro jugador o ya hay ganador");
   }
 }
 
 function dibujado(x,y){
-  if(cliqueado){
+  if(cliqueado && ganador == 0){
     cliqueado.setPosition(x,y);
-    clearCanvas("white");
+    clearCanvas();
     dibujarFichas();
   }
 }
@@ -179,6 +192,14 @@ function setTurno(){
     turno = true;
   }
 }
+function chequearGanador(){
+  let body = document.querySelector("#ganador");
+  if (ganador == 1 || ganador == 2){
+    body.innerHTML = "El ganador es el jugador numero: " + ganador;
+  }else if (ganador == 3){
+    body.innerHTML = "Hay empate";
+  }
+}
 
 function onMouseUp(e){
   let x = e.layerX;
@@ -228,13 +249,10 @@ function onMouseUp(e){
     }
   }
   cliqueado = null;
-  console.table(matriz);
   ganador = tablero.verificarTablero();
-  console.log(ganador);
-
+  chequearGanador();
 }
 
 canvas.addEventListener('mousedown',onMouseDown,false);
 
-crearMatriz();
 juegoNuevo();
