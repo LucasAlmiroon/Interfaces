@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes corriendo{
+    0%{
+        background-position: 0px;
+    }
+    100%{
+        background-position: -2100px;
+    }
+}
+
+@keyframes fondo{
+    0%{
+        background-position: 0px;
+    }
+    100%{
+        background-position: -1927px;
+    }
+}
+
+
+.personaje.corriendo{
+    width: 149px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    background-image: url("../img/sonic-corriendo.png");
+    animation: corriendo 2s steps(14) infinite;
+    z-index: 1;
+}
+
+.fondo{
+    height: 650px;
+    position: relative;
+    background-image: url("../img/fondo.png");
+    animation: fondo 3s linear infinite;    
+
+}
+.parallax {
+
+    background: no-repeat fixed 50% 50%;
+    background-size: cover;
+}

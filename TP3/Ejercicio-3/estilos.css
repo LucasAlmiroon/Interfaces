@@ -1,0 +1,41 @@
+@keyframes rotacion {
+    0%{
+        transform: rotate(0deg);
+        
+    }
+    50%{
+        transform: rotateZ(180deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
+#hora,#min,#seg{
+    position: absolute;
+    margin: auto;
+    transform-origin: bottom center;
+}
+
+
+#hora {
+    left: 1%;
+    top: 10.5%;
+    transform: rotate(0deg);
+    animation: rotacion 2100s linear infinite;
+    height: 70px;
+}
+
+#min{
+    left: 1%;
+    top: 6%;
+    transform: rotate(0deg);
+    animation: rotacion 36s linear infinite;
+    height: 100px;
+}
+
+#seg{
+    transform: rotate(0deg);
+    animation: rotacion 6s linear infinite;
+    height: 130px;
+}
