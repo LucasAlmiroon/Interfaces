@@ -1,6 +1,31 @@
 body{
     margin: 0;
     padding: 0;
+    animation: rebote 3s alternate initial ease-in;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+a :hover{
+    background-color: blue;
+
+}
+
+@keyframes rebote {
+    0%{
+        transform: translateX(-40%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
 }
 
 @keyframes corriendo{
