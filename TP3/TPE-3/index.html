@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Index</title>
     <link rel="stylesheet" href="sites/css/estilos.css">
 </head>
 <body>
-    <header>
+    <div class="carga">
+        <div class="lds-dual-ring"></div>
+    </div>
+    <header class="esconder">
         <nav class="menu">
             <a href="index.html"><img src="sites/img/logo.png" alt="logo"></a>
-            <a href="calendario.html">CALENDARIO</a>
-            <a href="">CONTACTO</a>
+            <a href="calendario.html"><img src="sites/img/calendario.png" alt="Calendario" width="20%" height="20%"></a>
+            <a href="contacto.html"><img src="sites/img/contacto.png" alt="Contacto" width="20%" height="20%"></a>
         </nav>
     </header>
-    <div class="carrusel">
+    <div class="carrusel esconder">
         <ul>
             <li><img src="sites/img/1.jpg" alt="Primer imagen" width="100%" height="100%"></li>
             <li><video src="sites/img/trailer.mp4" width="100%" controls></video></li>
@@ -23,7 +26,7 @@
         </ul>
     </div>
     <div class ="contenedor">
-        <div class ="tarjeta">
+        <div class ="tarjeta esconder">
             <div class = "cara cara1">
                 <div class ="contetarjeta">
                     <img src="sites/img/Sonic.png" alt="Sonic">
@@ -36,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class ="tarjeta">
+        <div class ="tarjeta esconder">
             <div class = "cara cara1">
                 <div class ="contetarjeta">
                     <img src="sites/img/dr-robotnik.png" alt="Doctor Robotnik">
@@ -49,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class ="tarjeta">
+        <div class ="tarjeta esconder">
             <div class = "cara cara1">
                 <div class ="contetarjeta">
                     <img src="sites/img/james-marsden.png" alt="Tom Wachowski">
@@ -63,11 +66,17 @@
             </div>
         </div>
     </div>
-    <div class = "fondo">
+    <div class = "fondo esconder">
         <div class = "personaje corriendo"></div>
     </div>
     <div></div>
-
+    <footer class="esconder">
+        <ul>
+            <li>Programador: Lucas Almiron</li>
+            <li>TUDAI 2020</li>
+        </ul>
+        <a href="https://www.sega.es/"><img src="https://upload.wikimedia.org/wikipedia/commons/4/41/SEGA_logo.png" width="300px" height="150px" alt=""></a>
+    </footer>
     <script src="sites/js/script.js"></script>
 </body>
 </html>

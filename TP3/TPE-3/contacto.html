@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
     <link rel="stylesheet" href="sites/css/estilos.css">
-    <title>Calendario</title>
 </head>
 <body>
     <div class="carga">
@@ -17,21 +17,26 @@
             <a href="contacto.html"><img src="sites/img/contacto.png" alt="Contacto" width="20%" height="20%"></a>
         </nav>
     </header>
-    <table class="countdown esconder">
-        <th>Estreno</th>
-        <tr>
-            <td id="dias"></td>
-            <td id="horas"></td>
-            <td id="minutos"></td>
-            <td id="segundos"></td>
-        </tr>
-        <tr>
-            <td>DIAS</td>
-            <td>HORAS</td>
-            <td>MINUTOS</td>
-            <td>SEGUNDOS</td>
-        </tr>
-    </table>
+    <form action="" class="esconder">
+        <h1>Contacto</h1>
+        <span>Nombre</span>
+        <div class = "contentInput">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <label class="animacion-input"></label>
+        </div>
+        <span>Apellido</span>
+        <div class = "contentInput">
+            <input type="text" name="apellido" placeholder="Apellido">
+            <label class="animacion-input"></label>
+        </div>
+        <span>E-mail</span>
+        <div class="contentInput">
+            <input type="text" name="mail" placeholder="E-mail">
+            <label class="animacion-input"></label>
+        </div>
+        <textarea name="comentario" id="" cols="30" rows="10"></textarea>
+        <button>Enviar</button>
+    </form>
     <footer class="esconder">
         <ul>
             <li>Programador: Lucas Almiron</li>
@@ -40,6 +45,5 @@
         <a href="https://www.sega.es/"><img src="https://upload.wikimedia.org/wikipedia/commons/4/41/SEGA_logo.png" width="300px" height="150px" alt=""></a>
     </footer>
     <script src="sites/js/script.js"></script>
-    <script src="sites/js/scriptCalendario.js"></script>
 </body>
 </html>
