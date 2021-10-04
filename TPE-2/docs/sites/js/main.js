@@ -26,7 +26,7 @@ function crearMatriz(){
 function CrearJugadores(){
     jugador1 = new Jugador(document.querySelector("#nombre1").value,document.querySelector("#colorF1").value,true,false,20,20);
     
-    jugador2 = new Jugador(document.querySelector("#nombre2").value,document.querySelector("#colorF2").value,true,false,850,20);
+    jugador2 = new Jugador(document.querySelector("#nombre2").value,document.querySelector("#colorF2").value,false,false,20,850);
 
     juegoNuevo();
 }
@@ -43,12 +43,12 @@ function juegoNuevo(){
             tablero = new Tablero(200,10,canvas,ctx,matriz,imageTablero,imageBackground);
             tablero.drawBack();
             tablero.draw();
+            dibujarFichas();
+            
         }
     }
     jugador1.generarFichas(ctx);
     jugador2.generarFichas(ctx);
-
-    dibujarFichas();
 }
 
 //Dibuja cada ficha del arreglo y el tablero.
@@ -62,15 +62,15 @@ function dibujarFichas(){
         jugador1.fichas[i].draw();
         jugador2.fichas[i].draw();
     }
+    
 }
 
 //Limpia el canvas, para cuando mueve la ficha.
-function clearCanvas(color){
-    ctx.fillStyle = color;
+function clearCanvas(){
     ctx.fillRect(0,0,canvas.width,canvas.height);
 }
 
-//Se verifica en que ficha se hizo click, verificando el turno del jugador.
+//Se verifica en que ficha se hizo click y la devuelve, verificando el turno del jugador.
 function clickEnFicha(x,y){
     if(jugador1.turno){
       for (let i = 0; i < jugador1.fichas.length; i++){
@@ -96,7 +96,7 @@ function clickEnFicha(x,y){
 //Captura el evento del mouse.
 function onMouseDown(e){
     cliqueado = clickEnFicha(e.layerX,e.layerY);
-    if (cliqueado != null && ganador == 0) {
+    if (cliqueado != null && !jugador1.ganador && !jugador2.ganador) {
         canvas.addEventListener('mousemove', e => {
             dibujado(e.layerX,e.layerY);
         });
@@ -108,7 +108,7 @@ function onMouseDown(e){
 //Setea la posicion de Y de la ficha en el tablero, segun la cantidad de fichas que tiene por debajo.
 function setY(a){
     let j = 0;
-    //En este while, se verifica si hay una ficha del jugador uno o dos debajo, si es asi, suma una columna.
+    //En este while, se verifica si hay una ficha del jugador uno o dos debajo, si es asi, suma una fila.
     while(matriz[a][j] == 1 || matriz[a][j] == 2 && j < FILAS){
         j++;
     }
@@ -195,7 +195,8 @@ function dibujado(x,y){
     }
 }
 
-//Captura el evento del mouse, dibuja las fichas segun los parametros y setea el turno.
+/*Captura el evento del mouse, dibuja las fichas segun los parametros, 
+se establece un rango para saber en que columna y fila va la ficha y setea el turno.*/
 function onMouseUp(e){
     if(cliqueado != null){  
       let x = e.layerX;
@@ -216,7 +217,7 @@ function onMouseUp(e){
         setTurno();
       }else if(x >= 467 && x <= 535){
         y = setY(3);
-        dibujado(500,y)
+        dibujado(500,y);
         dibujarFichas();
         setTurno();
       }else if(x >= 549 && x <= 615){
@@ -246,7 +247,7 @@ function onMouseUp(e){
       cliqueado = null;
       if(tablero.verificarTablero() == 1){
           jugador1.ganador = true;
-      }else if (tablero.verificarTablero == 2){
+      }else if (tablero.verificarTablero() == 2){
           jugador2.ganador = true;
       };
       chequearGanador();
