@@ -25,13 +25,13 @@ function crearMatriz(){
 }
 
 function CrearJugadores(){
-    if(document.querySelector("#nombre1").value != "" && document.querySelector("#nombre2").value != ""){
+    if(document.querySelector("#nombre1").value != "" && document.querySelector("#nombre2").value != "" && document.querySelector("#colorF1").value != document.querySelector("#colorF2").value){
         jugador1 = new Jugador(document.querySelector("#nombre1").value,document.querySelector("#colorF1").value,true,false,20,20);
         jugador2 = new Jugador(document.querySelector("#nombre2").value,document.querySelector("#colorF2").value,false,false,20,850);
 
         juegoNuevo();
     }else{
-        alert("Ingrese nombre de jugadores");
+        alert("Ingrese nombre de jugadores y ponga fichas de colores diferentes.");
     }
     
 

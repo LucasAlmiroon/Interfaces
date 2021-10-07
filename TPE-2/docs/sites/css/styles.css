@@ -15,6 +15,11 @@ body{
 h2, #timer{
     color: antiquewhite;
 }
+
+#timer{
+    font-size: 25px;
+    font-family: Times New Roman, serif;
+}
 #juego{
     margin: 1% 0 0 15%;
 }
