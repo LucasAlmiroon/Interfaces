@@ -12,10 +12,11 @@
     <title>4 en linea</title>
 </head>
 <body>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <div id="botonPrincipal">
+    <button type="button" class="juegoNuevo btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Juego nuevo
     </button>
-
+  </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -53,13 +54,15 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="juegoNuevo btn btn-primary">Juego nuevo</button>
+              <button type="button" class="empezar btn btn-primary" data-bs-dismiss="modal">Empezar</button>
             </div>
           </div>
         </div>
       </div>
     
+    <h2 id="turno"></h2>
     <canvas id="juego" height="520" width="980"></canvas>
+    <div id="timer"></div>
     <script src="sites/js/ficha.js"></script>
     <script src="sites/js/tablero.js"></script>
     <script src="sites/js/jugador.js"></script>
